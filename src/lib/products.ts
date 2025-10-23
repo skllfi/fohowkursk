@@ -1,4 +1,3 @@
-
 import productInfo from './products.json';
 import { StaticImageData } from 'next/image';
 
@@ -49,24 +48,4 @@ export type ProductWithImage = Product & {
     imageObj?: StaticImageData;
 };
 
-function getProducts(): ProductWithImage[] {
-    return productInfo.products.map(p => ({
-        ...p,
-        // We no longer add imageObj here as it was causing issues.
-        // The path from p.image will be used directly.
-    }));
-}
-
-function getProduct(id: string): ProductWithImage | undefined {
-    const products = getProducts();
-    return products.find(p => p.id === id);
-}
-
-function getStaticParams() {
-    return productInfo.products.map((product) => ({
-        id: product.id,
-    }));
-}
-
 export const productsData: Product[] = productInfo.products;
-export { getProducts, getProduct, getStaticParams };
