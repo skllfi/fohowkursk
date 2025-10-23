@@ -1,9 +1,9 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import { Product, getProducts } from '@/lib/products';
+import type { Product } from '@/lib/products';
+import productsDataSource from '@/lib/products.json';
 import ProductGrid from '@/components/fohow/ProductGrid';
 import HealthPrograms from '@/components/fohow/HealthPrograms';
 import ProductModal from '@/components/fohow/ProductModal';
@@ -19,7 +19,7 @@ const categoryLabels: { [key: string]: string } = {
   hygiene: 'Гигиена',
 };
 
-const allProducts = getProducts();
+const allProducts: Product[] = productsDataSource.products;
 
 const allFilters = [
   { label: 'Все', value: 'all' },

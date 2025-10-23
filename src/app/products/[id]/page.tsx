@@ -3,6 +3,12 @@ import ProductPageClient from '@/components/fohow/ProductPageClient';
 import { notFound } from 'next/navigation';
 import type { Product } from '@/lib/products'; // Use 'import type' for type-only imports
 
+interface ProductPageProps {
+    params: {
+        id: string;
+    };
+}
+
 // This function generates the static paths for each product page at build time.
 export async function generateStaticParams() {
   // The function must return an array of objects, where each object has an 'id' property
@@ -19,7 +25,7 @@ function getProduct(id: string): Product | undefined {
 
 // The main component for the product page.
 // It's a server component that fetches data and passes it to a client component.
-export default function ProductPage({ params }: { params: { id: string } }) {
+export default function ProductPage({ params }: ProductPageProps) {
   const { id } = params;
   const product = getProduct(id);
 
