@@ -13,7 +13,13 @@ function getProduct(id: string): Product | undefined {
   return productsDataSource.products.find((p: Product) => p.id === id);
 }
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+type ProductPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const ProductPage = ({ params }: ProductPageProps) => {
   const { id } = params;
   const product = getProduct(id);
 
@@ -22,4 +28,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   }
 
   return <ProductPageClient product={product} />;
-}
+};
+
+export default ProductPage;
